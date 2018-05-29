@@ -2,9 +2,30 @@ $(function() {
     var sentence = 'The quick brown fox jumps over the lazy dog';
     var timerStarted = false;
     var timer = 5;
-    $('textarea').on('keypress', function(e) {
+    var charCount = 0;
+
+    $('textarea').on('keydown', function(e) {
+        switch (e.keyCode) {
+            case 8:  // Backspace
+            case 9:  // Tab
+            case 13: // Enter
+            case 16: // Shift
+            case 17: // Ctrl
+            case 18: // Alt
+            case 20: // Caps Lock
+            case 37: // Left
+            case 38: // Up
+            case 39: // Right
+            case 40: // Down
+            case 46: // Delete
+                break; // do not count above keys in character count
+
+            default:
+                charCount++;
+        }
+
         // start countdown timer on initial keypress
-        if(!timerStarted) {
+        if (!timerStarted) {
             timerStarted = true;
 
             // reduce countdown timer by 1 second
