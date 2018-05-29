@@ -1,8 +1,9 @@
 $(function() {
     var sentence = 'The quick brown fox jumps over the lazy dog';
     var timerStarted = false;
-    var timer = 5;
+    var timer = 30;
     var charCount = 0;
+    var intervalID;
 
     $('textarea').on('keydown', function(e) {
         switch (e.keyCode) {
@@ -22,6 +23,12 @@ $(function() {
 
             default:
                 charCount++;
+
+                // typing test has finished when user types the same amount
+                // of characters contained in the test sentence
+                if (charCount === sentence.length) {
+                    endTest();
+                }
         }
 
         // start countdown timer on initial keypress
@@ -33,16 +40,14 @@ $(function() {
             // update timer on web page
             $('#timer').text(timer);
             // invoke the countdown timer every second
-            var intervalID = setInterval(countdownTimer, 1000);
+            intervalID = setInterval(countdownTimer, 1000);
 
             function countdownTimer() {
                 // reduce countdown timer by 1 second
                 timer--;
                 if (timer === 0) {
-                    // Countdown timer has expired: disable typing, stop counting down
-                    $('textarea').prop('disabled', true);    
-                    clearInterval(intervalID);
-                    $('#timer').text(timer);
+                    // timer expired
+                    endTest();
                 } else if (timer < 10) {
                     // prefix times less than ten seconds with 0
                     // update timer on web page
@@ -55,5 +60,13 @@ $(function() {
         }
 
     });
+
+    // timer expired or user completed typing entire sentence
+    // disable typing, stop countdown timer, update timer on web page
+    function endTest() {
+        $('textarea').prop('disabled', true);    
+        clearInterval(intervalID);
+        $('#timer').text('0');
+    }
 });
 
