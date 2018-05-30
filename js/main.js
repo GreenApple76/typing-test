@@ -5,6 +5,8 @@ $(function() {
     var charCount = 0;
     var intervalID;
 
+    $('#retake-test').on('click', retakeTest);
+
     $('textarea').on('focus', function() {
         $(this).prop('placeholder', '');
     });
@@ -104,6 +106,20 @@ $(function() {
         }
 
         return calcSpeed() - errorWordCount;
+    }
+
+    // reset test
+    function retakeTest() {
+        clearInterval(intervalID);
+        $('textarea').val('');
+        $('textarea').prop('disabled', false);
+        $('textarea').prop('placeholder', 'Begin typing above text here...');
+        $('#timer').text('60');
+        $('#wpm').text('-');
+        $('#adjusted-wpm').text('-');
+        timer = 60;
+        charCount = 0;
+        timerStarted = false;
     }
 });
 
