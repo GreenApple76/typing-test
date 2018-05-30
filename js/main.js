@@ -52,25 +52,25 @@ $(function() {
             $('#timer').text(timer);
             // invoke the countdown timer every second
             intervalID = setInterval(countdownTimer, 1000);
-
-            function countdownTimer() {
-                // reduce countdown timer by 1 second
-                timer--;
-                if (timer === 0) {
-                    // timer expired
-                    endTest();
-                } else if (timer < 10) {
-                    // prefix times less than ten seconds with 0
-                    // update timer on web page
-                    $('#timer').text('0' + timer);
-                } else {
-                    // update timer on web page
-                    $('#timer').text(timer);
-                }
-            }
         }
-
     });
+
+    // a 60 second countdown timer that gets invoked every second
+    function countdownTimer() {
+        // reduce countdown timer by 1 second
+        timer--;
+        if (timer === 0) {
+            // timer expired
+            endTest();
+        } else if (timer < 10) {
+            // prefix times less than ten seconds with 0
+            // update timer on web page
+            $('#timer').text('0' + timer);
+        } else {
+            // update timer on web page
+            $('#timer').text(timer);
+        }
+    }
 
     // timer expired or user completed typing entire sentence
     // disable typing, stop countdown timer, update timer on web page
