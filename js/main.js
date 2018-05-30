@@ -1,5 +1,5 @@
 $(function() {
-    var testText = 'The quick brown fox jumps over the lazy dog';
+    var testText = 'The quick brown fox jumps over the lazy dog. Jived fox nymph grabs quick waltz. Glib jocks quiz nymph to vex dwarf. Sphinx of black quartz, judge my vow.';
     var timerStarted = false;
     var timer = 60;
     var charCount = 0;
