@@ -1,8 +1,7 @@
 $(function() {
-    // var sentence = 'The quick brown fox jumps over the lazy dog';
-    var sentence = 'The';
+    var testText = 'The quick brown fox jumps over the lazy dog';
     var timerStarted = false;
-    var timer = 10;
+    var timer = 60;
     var charCount = 0;
     var intervalID;
 
@@ -34,10 +33,10 @@ $(function() {
 
             default:
                 charCount++;
-
+                $('#wpm').text(calcSpeed);
                 // typing test has finished when user types the same amount
-                // of characters contained in the test sentence
-                if (charCount === sentence.length) {
+                // of characters contained in the testText 
+                if (charCount === testText.length) {
                     endTest();
                 }
         }
@@ -81,6 +80,30 @@ $(function() {
         setTimeout(function() {$('textarea').prop('disabled', true);}, 0);
         clearInterval(intervalID);
         $('#timer').text('0');
+        $('#wpm').text(calcSpeed);
+        $('#adjusted-wpm').text(calcAdjustedSpeed);
+    }
+
+    // calculate typing speed
+    function calcSpeed() {
+        return Math.round((charCount / 5) / ((60 - timer) / 60));
+    }
+
+    // calculated adjusted typing speed
+    function calcAdjustedSpeed() {
+        var inputText = $('textarea').val();
+        var inputWords = inputText.split(' ');
+        var testWords = testText.split(' ');
+        var errorWordCount = 0;
+
+        // determine number of uncorrected typed words
+        for (var i = 0; i < inputWords.length; i++) {
+            if (inputWords[i] !== testWords[i]) {
+                errorWordCount++;
+            }
+        }
+
+        return calcSpeed() - errorWordCount;
     }
 });
 
