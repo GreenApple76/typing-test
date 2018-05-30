@@ -11,7 +11,7 @@ $(function() {
         $(this).prop('placeholder', '');
     });
 
-    $('textarea').on('keydown', function(e) {
+    $('textarea').on('keyup', function(e) {
         switch (e.keyCode) {
             case 9:  // Tab
             case 13: // Enter
@@ -46,7 +46,6 @@ $(function() {
         // start countdown timer on initial keypress
         if (!timerStarted) {
             timerStarted = true;
-
             // reduce countdown timer by 1 second
             timer--;
             // update timer on web page
@@ -76,10 +75,7 @@ $(function() {
     // timer expired or user completed typing entire sentence
     // disable typing, stop countdown timer, update timer on web page
     function endTest() {
-        // wrap textarea disabling in setTimeout to provide slight
-        // delay, allowing keyup/change event(?) time to display final character
-        // in textarea before being disabled
-        setTimeout(function() {$('textarea').prop('disabled', true);}, 0);
+        $('textarea').prop('disabled', true);
         clearInterval(intervalID);
         $('#timer').text('0');
         $('#wpm').text(calcSpeed);
@@ -93,11 +89,12 @@ $(function() {
 
     // calculated adjusted typing speed
     function calcAdjustedSpeed() {
-        var inputText = $('textarea').val();
-        var inputWords = inputText.split(' ');
+        var inputWords = $('textarea').val().split(' ');
         var testWords = testText.split(' ');
         var errorWordCount = 0;
 
+        console.log('inputWords: ', inputWords);
+        console.log('textarea val: ', $('textarea').val());
         // determine number of uncorrected typed words
         for (var i = 0; i < inputWords.length; i++) {
             if (inputWords[i] !== testWords[i]) {

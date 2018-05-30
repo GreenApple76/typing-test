@@ -1,0 +1,51 @@
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+    height: 100vh;
+    background: linear-gradient(#800080, #DDA0DD);
+    color: #E6E6FA;
+}
+
+h1 {
+    font-family: 'Bitter', serif;
+    font-weight: 300;
+    color: yellow;
+}
+
+p:first-of-type {
+    line-height: 1.75;
+}
+
+textarea {
+    background-color: rgb(255, 255, 134);
+    outline-color: #4B0082;
+    width: 275px;
+    padding: 5px;
+    font-size: 18px;
+}
+
+a {
+    background-color: #4B0082;
+    color: yellow;
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0 6px #24003e;
+}
+
+a:hover {
+    box-shadow: 0 4px #24003e;
+    top: 2px;
+}
+
+a:active {
+    box-shadow: 0 0 #24003e;
+    top: 6px;
+}
+
+.container {
+    margin: auto;
+    max-width: 400px;
+}
