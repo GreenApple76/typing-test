@@ -5,6 +5,8 @@ $(function() {
     var charCount = 0;
     var intervalID;
 
+    $('#begin-test').on('click', function() {$('textarea').focus();});
+
     $('#retake-test').on('click', retakeTest);
 
     $('textarea').on('focus', function() {
