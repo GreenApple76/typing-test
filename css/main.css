@@ -4,6 +4,9 @@ body {
     letter-spacing: 2px;
     height: 100vh;
     background-color: #800080;
+    background: -webkit-gradient(linear, left top, left bottom, from(#800080), to(#DDA0DD));
+    background: -webkit-linear-gradient(#800080, #DDA0DD);
+    background: -o-linear-gradient(#800080, #DDA0DD);
     background: linear-gradient(#800080, #DDA0DD);
     color: #E6E6FA;
 }
@@ -33,18 +36,21 @@ a {
     padding: 10px 25px;
     border-radius: 5px;
     position: relative;
-    box-shadow: 0 6px #24003e;
+    -webkit-box-shadow: 0 6px #24003e;
+            box-shadow: 0 6px #24003e;
     display: inline-block;
     margin-top: 20px;
 }
 
 a:hover {
-    box-shadow: 0 4px #24003e;
+    -webkit-box-shadow: 0 4px #24003e;
+            box-shadow: 0 4px #24003e;
     top: 2px;
 }
 
 a:active {
-    box-shadow: 0 0 #24003e;
+    -webkit-box-shadow: 0 0 #24003e;
+            box-shadow: 0 0 #24003e;
     top: 6px;
 }
 
